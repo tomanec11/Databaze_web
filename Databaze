@@ -1,0 +1,144 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Počítač: 127.0.0.1
+-- Vytvořeno: Stř 16. bře 2022, 00:01
+-- Verze serveru: 10.4.22-MariaDB
+-- Verze PHP: 7.3.33
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Databáze: `user_contact`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `content` text DEFAULT NULL,
+  `photo` varchar(255) NOT NULL,
+  `price` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `name`, `content`, `photo`, `price`) VALUES
+(1, 'Pokoj č.2', 'S vlastním WC, Sprchou a TV', 'image/IMG_4754.JPG', 320),
+(2, 'pokoj č.3', 'S vlastním WC, Sprchou a TV', 'image/IMG_4754.JPG', 320),
+(3, 'pokoj č.4', 'aaa', 'image/IMG_4754.JPG', 320),
+(4, 'pokoj č.5', 'aaa', 'image/IMG_4754.JPG', 320),
+(5, 'Pokoj č.6', 'aaa', 'image/IMG_4754.JPG', 320),
+(6, 'Pokoj č.7', 'aaa', 'image/IMG_4754.JPG', 320);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `rooms_extra_info`
+--
+
+CREATE TABLE `rooms_extra_info` (
+  `id_forkey` int(11) NOT NULL,
+  `wc` varchar(16) NOT NULL,
+  `sprcha` varchar(16) NOT NULL,
+  `umyvadlo` varchar(16) NOT NULL,
+  `tv` varchar(16) NOT NULL,
+  `postel` varchar(16) NOT NULL,
+  `skrin` varchar(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `rooms_extra_info`
+--
+
+INSERT INTO `rooms_extra_info` (`id_forkey`, `wc`, `sprcha`, `umyvadlo`, `tv`, `postel`, `skrin`) VALUES
+(1, '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `user_info`
+--
+
+CREATE TABLE `user_info` (
+  `id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `tel` varchar(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `user_info`
+--
+
+INSERT INTO `user_info` (`id`, `name`, `email`, `tel`) VALUES
+(21, 'Tomáš Martinec', 'tom.martinec@email.cz', '775892911');
+
+--
+-- Indexy pro exportované tabulky
+--
+
+--
+-- Indexy pro tabulku `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pro tabulku `rooms_extra_info`
+--
+ALTER TABLE `rooms_extra_info`
+  ADD KEY `id_forkey` (`id_forkey`);
+
+--
+-- Indexy pro tabulku `user_info`
+--
+ALTER TABLE `user_info`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pro tabulky
+--
+
+--
+-- AUTO_INCREMENT pro tabulku `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pro tabulku `user_info`
+--
+ALTER TABLE `user_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- Omezení pro exportované tabulky
+--
+
+--
+-- Omezení pro tabulku `rooms_extra_info`
+--
+ALTER TABLE `rooms_extra_info`
+  ADD CONSTRAINT `id_forkey` FOREIGN KEY (`id_forkey`) REFERENCES `rooms` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
