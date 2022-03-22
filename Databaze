@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Stř 16. bře 2022, 00:01
+-- Vytvořeno: Úte 22. bře 2022, 23:18
 -- Verze serveru: 10.4.22-MariaDB
 -- Verze PHP: 7.3.33
 
@@ -24,6 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabulky `costumer_book`
+--
+
+CREATE TABLE `costumer_book` (
+  `id` int(11) NOT NULL,
+  `room` varchar(64) NOT NULL,
+  `Fname` varchar(64) NOT NULL,
+  `Lname` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `tel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabulky `costumer_message`
+--
+
+CREATE TABLE `costumer_message` (
+  `id` int(11) NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `surname` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `mess` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `costumer_message`
+--
+
+INSERT INTO `costumer_message` (`id`, `name`, `surname`, `email`, `mess`) VALUES
+(26, 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 'AHOJ'),
+(27, 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 'dfhgdzh'),
+(28, 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 'AHOJ'),
+(29, 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 'AHOJ'),
+(30, 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 'AHOJ');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabulky `rooms`
 --
 
@@ -40,12 +80,12 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `content`, `photo`, `price`) VALUES
-(1, 'Pokoj č.2', 'S vlastním WC, Sprchou a TV', 'image/IMG_4754.JPG', 320),
-(2, 'pokoj č.3', 'S vlastním WC, Sprchou a TV', 'image/IMG_4754.JPG', 320),
-(3, 'pokoj č.4', 'aaa', 'image/IMG_4754.JPG', 320),
-(4, 'pokoj č.5', 'aaa', 'image/IMG_4754.JPG', 320),
-(5, 'Pokoj č.6', 'aaa', 'image/IMG_4754.JPG', 320),
-(6, 'Pokoj č.7', 'aaa', 'image/IMG_4754.JPG', 320);
+(1, 'Pokoj č.2', 'Menší pokoj s vlastní koupelnou', 'image/IMG_4754.JPG', 320),
+(2, 'pokoj č.3', 'Menší pokoj s vlastní koupelnou', 'image/IMG_4754.JPG', 320),
+(3, 'pokoj č.4', 'Větší pokoj se společnou koupelnou', 'image/IMG_4754.JPG', 320),
+(4, 'pokoj č.5', 'Větší pokoj bez TV + společná koupelna', 'image/IMG_4754.JPG', 320),
+(5, 'Pokoj č.6', 'Střední pokoj s WC a společnou sprchou', 'image/IMG_4754.JPG', 320),
+(6, 'Pokoj č.7', 'Střední pokoj se společnou koupelnou', 'image/IMG_4754.JPG', 320);
 
 -- --------------------------------------------------------
 
@@ -68,31 +108,28 @@ CREATE TABLE `rooms_extra_info` (
 --
 
 INSERT INTO `rooms_extra_info` (`id_forkey`, `wc`, `sprcha`, `umyvadlo`, `tv`, `postel`, `skrin`) VALUES
-(1, '', '', '', '', '', '');
-
--- --------------------------------------------------------
-
---
--- Struktura tabulky `user_info`
---
-
-CREATE TABLE `user_info` (
-  `id` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `tel` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Vypisuji data pro tabulku `user_info`
---
-
-INSERT INTO `user_info` (`id`, `name`, `email`, `tel`) VALUES
-(21, 'Tomáš Martinec', 'tom.martinec@email.cz', '775892911');
+(1, 'Ano', 'Ano', 'Ano', 'Ano', 'Ano', 'Ano'),
+(2, 'Ano', 'Ano', 'Ano', 'Ano', 'Ano', 'Ano'),
+(3, 'Společné', 'Společné', 'Ano', 'Ano', 'Ano', 'Ano'),
+(4, 'Společné', 'Společné', 'Ano', 'Ne', 'Ano', 'Ano'),
+(5, 'Ano', 'Společné', 'Ano', 'Ano', 'Ano', 'Ano'),
+(6, 'Společné', 'Společné', 'Ano', 'Ano', 'Ano', 'Ano');
 
 --
 -- Indexy pro exportované tabulky
 --
+
+--
+-- Indexy pro tabulku `costumer_book`
+--
+ALTER TABLE `costumer_book`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexy pro tabulku `costumer_message`
+--
+ALTER TABLE `costumer_message`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexy pro tabulku `rooms`
@@ -107,26 +144,26 @@ ALTER TABLE `rooms_extra_info`
   ADD KEY `id_forkey` (`id_forkey`);
 
 --
--- Indexy pro tabulku `user_info`
---
-ALTER TABLE `user_info`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT pro tabulky
 --
+
+--
+-- AUTO_INCREMENT pro tabulku `costumer_book`
+--
+ALTER TABLE `costumer_book`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pro tabulku `costumer_message`
+--
+ALTER TABLE `costumer_message`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pro tabulku `rooms`
 --
 ALTER TABLE `rooms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT pro tabulku `user_info`
---
-ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Omezení pro exportované tabulky
