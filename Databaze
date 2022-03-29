@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Počítač: 127.0.0.1
--- Vytvořeno: Pon 28. bře 2022, 03:29
+-- Vytvořeno: Úte 29. bře 2022, 23:04
 -- Verze serveru: 10.4.22-MariaDB
 -- Verze PHP: 7.3.33
 
@@ -33,7 +33,7 @@ CREATE TABLE `costumer_book` (
   `Fname` varchar(64) NOT NULL,
   `Lname` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
-  `tel` int(11) NOT NULL
+  `tel` bigint(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `costumer_book` (
 --
 
 INSERT INTO `costumer_book` (`id`, `room`, `Fname`, `Lname`, `email`, `tel`) VALUES
-(2, 'Pokoj č.2', 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 420);
+(27, 'Pokoj č.2', 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 602544778);
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,13 @@ CREATE TABLE `costumer_message` (
   `email` varchar(64) NOT NULL,
   `mess` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Vypisuji data pro tabulku `costumer_message`
+--
+
+INSERT INTO `costumer_message` (`id`, `name`, `surname`, `email`, `mess`) VALUES
+(32, 'Tomáš', 'Martinec', 'tom.martinec@email.cz', 'AHOJ');
 
 -- --------------------------------------------------------
 
@@ -76,12 +83,12 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `content`, `photo`, `price`) VALUES
-(1, 'Pokoj č.2', 'Menší pokoj s vlastní koupelnou', 'image/room2.jpg', 320),
-(2, 'pokoj č.3', 'Menší pokoj s vlastní koupelnou', 'image/room3.jpg', 320),
-(3, 'pokoj č.4', 'Větší pokoj se společnou koupelnou', 'image/room4.jpg', 320),
-(4, 'pokoj č.5', 'Větší pokoj bez TV + společná koupelna', 'image/room5.jpg', 320),
-(5, 'Pokoj č.6', 'Střední pokoj s WC a společnou sprchou', 'image/room6.jpg', 320),
-(6, 'Pokoj č.7', 'Střední pokoj se společnou koupelnou', 'image/room7.jpg', 320);
+(1, 'Pokoj č.2', 'Menší pokoj s vlastní koupelnou', 'image/room2.jpg', 365),
+(2, 'Pokoj č.3', 'Menší pokoj s vlastní koupelnou', 'image/room3.jpg', 365),
+(3, 'Pokoj č.4', 'Větší pokoj se společnou koupelnou', 'image/room4.jpg', 315),
+(4, 'Pokoj č.5', 'Větší pokoj bez TV + společná koupelna', 'image/room5.jpg', 315),
+(5, 'Pokoj č.6', 'Střední pokoj s WC a společnou sprchou', 'image/room6.jpg', 315),
+(6, 'Pokoj č.7', 'Střední pokoj se společnou koupelnou', 'image/room7.jpg', 315);
 
 -- --------------------------------------------------------
 
@@ -147,13 +154,13 @@ ALTER TABLE `rooms_extra_info`
 -- AUTO_INCREMENT pro tabulku `costumer_book`
 --
 ALTER TABLE `costumer_book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pro tabulku `costumer_message`
 --
 ALTER TABLE `costumer_message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pro tabulku `rooms`
